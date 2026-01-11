@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const SHOPEE_LINK = "https://s.shopee.vn/50SjAWK3m3";
+  const SHOPEE_LINK = "https://s.shopee.vn/4LD2R7Anhb";
 
   if (!localStorage.getItem("opened_shopee")) {
     const overlay = document.createElement("div");
@@ -19,19 +19,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.appendChild(overlay);
   }
-});
-document.addEventListener("DOMContentLoaded", () => {
-  const SHOPEE_LINK = "https://s.shopee.vn/50SjAWK3m3";
-  const overlay = document.getElementById("shopee-overlay");
-
-  if (localStorage.getItem("opened_shopee")) {
-    overlay.classList.add("hidden");
-    return;
-  }
-
-  overlay.addEventListener("click", () => {
-    localStorage.setItem("opened_shopee", "yes");
-    window.open(SHOPEE_LINK, "_blank");
-    overlay.classList.add("hidden");
-  });
 });
