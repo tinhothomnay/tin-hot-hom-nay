@@ -1,34 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const SHOPEE_LINK = "https://s.shopee.vn/4LD2R7Anhb";
+  const SHOPEE_LINK = "https://shopee.vn/your-affiliate-link";
 
-  if (sessionStorage.getItem("opened_shopee")) return;
+  if (!localStorage.getItem("opened_shopee")) {
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.zIndex = 9999;
+    overlay.style.cursor = "pointer";
 
-  const handleFirstAction = (e) => {
-    if (e.target.tagName === "IFRAME") {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+    overlay.onclick = () => {
+      localStorage.setItem("opened_shopee", "yes");
+      window.open(SHOPEE_LINK, "_blank");
+      overlay.remove();
+    };
 
-    sessionStorage.setItem("opened_shopee", "yes");
-    window.open(SHOPEE_LINK, "_blank");
-
-    document.removeEventListener("pointerdown", handleFirstAction, true);
-    document.removeEventListener("mousedown", handleFirstAction, true);
-    document.removeEventListener("touchstart", handleFirstAction, true);
-  };
-
-  document.addEventListener("pointerdown", handleFirstAction, true);
-  document.addEventListener("mousedown", handleFirstAction, true);
-  document.addEventListener("touchstart", handleFirstAction, true);
+    document.body.appendChild(overlay);
+  }
 });
-
-// ===== ĐẾM LƯỢT XEM (MIỄN PHÍ) =====
-fetch("https://api.countapi.xyz/hit/tinhothomnay/tin-hot-hom-nay")
-  .then(res => res.json())
-  .then(data => {
-    const viewEl = document.getElementById("view-count");
-    if (viewEl) {
-      viewEl.innerText = data.value.toLocaleString("vi-VN");
-    }
-  })
-  .catch(() => {});
