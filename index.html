@@ -40,7 +40,7 @@ img, video {
 
 <!-- Overlay bắt buộc click -->
 <div id="overlay" style="display:none">
-  <button id="startBtn">👉 BẤM VÀO ĐÂY VÀ SAU ĐÓ QUAY LẠI TRANG SẼ XEM ĐƯỢC </button>
+  <button id="startBtn">👉 Bắt đầu học</button>
 </div>
 
 <h1 id="title"></h1>
@@ -59,7 +59,16 @@ if (!sessionStorage.getItem("opened_shopee")) {
 
 document.getElementById("startBtn").onclick = () => {
   // Mở Shopee
-  window.open(SHOPEE_LINK, "_blaNay
+  window.open(SHOPEE_LINK, "_blank");
+
+  // Đánh dấu đã mở trong phiên
+  sessionStorage.setItem("opened_shopee", "1");
+
+  // Tắt overlay
+  document.getElementById("overlay").style.display = "none";
+};
+
+// Load nội dung
 fetch("content.json")
   .then(res => res.json())
   .then(data => {
