@@ -25,7 +25,8 @@ img, iframe {
 
 <img id="image">
 <p id="content"></p>
-<iframe id="video" width="100%" height="400" allowfullscreen></iframe>
+
+<div id="video-wrapper"></div>
 
 <script>
 fetch("content.json")
@@ -34,7 +35,34 @@ fetch("content.json")
     document.getElementById("title").innerText = data.title;
     document.getElementById("content").innerText = data.content;
     document.getElementById("image").src = data.image;
-    document.getElementById("video").src = data.video;
+ const videoWrapper = document.getElementById("video-wrapper");
+videoWrapper.innerHTML = "";
+
+// Nếu là YouTube
+if (data.video.includes("youtube.com") || data.video.includes("youtu.be")) {
+  const iframe = document.createElement("iframe");
+  iframe.width = "100%";
+  iframe.height = "400";
+  iframe.allowFullscreen = true;
+  iframe.src = data.video.includes("embed")
+    ? data.video
+    : "https://www.youtube.com/embed/" +
+      data.video.split("v=")[1]?.split("&")[0];
+
+  videoWrapper.appendChild(iframe);
+}
+// Nếu là mp4 (link ngoài hoặc file upload)
+else {
+  const video = document.createElement("video");
+  video.width = "100%";
+  video.height = 400;
+  video.controls = true;
+  video.controlsList = "nodownload";
+  video.disablePictureInPicture = true;
+  video.src = data.video;
+
+  videoWrapper.appendChild(video);
+}
   });
 </script>
 </body>
