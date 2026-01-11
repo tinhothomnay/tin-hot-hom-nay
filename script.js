@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const SHOPEE_LINK = "https://s.shopee.vn/70DnkaNSjf";
+  const SHOPEE_LINK = "https://shopee.vn/your-affiliate-link";
 
   // Chỉ yêu cầu click 1 lần mỗi phiên
   if (sessionStorage.getItem("opened_shopee")) return;
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Nút click
   const button = document.createElement("button");
-  button.innerText = "👉 Tin Hót Hôm Nay";
+  button.innerText = "👉 Bắt đầu học";
   button.style.padding = "15px 30px";
   button.style.fontSize = "18px";
   button.style.cursor = "pointer";
