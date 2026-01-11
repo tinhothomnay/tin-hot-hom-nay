@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Nút click
   const button = document.createElement("button");
-  button.innerText = "👉 Bắt đầu học";
+  button.innerText = "👉 Bấm vào đây và sau đó quay lại trang để xem";
   button.style.padding = "15px 30px";
   button.style.fontSize = "18px";
   button.style.cursor = "pointer";
