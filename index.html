@@ -2,52 +2,18 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Tin hot hôm nay</title>
+<title>Trang học</title>
 <script src="script.js"></script>
 <style>
-  #shopee-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+body {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: Arial;
+  line-height: 1.6;
 }
-
-#shopee-overlay.hidden {
-  display: none;
+img, iframe {
+  max-width: 100%;
 }
-
-.popup {
-  position: relative;
-  max-width: 600px;
-  width: 90%;
-}
-
-.popup img {
-  width: 100%;
-  border-radius: 12px;
-}
-
-.popup .close {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  background: #fff;
-  color: #000;
-  font-size: 18px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-body { max-width:800px; margin:40px auto; font-family:Arial; line-height:1.6 }
-img, iframe { max-width:100%; }
 </style>
 </head>
 
@@ -68,11 +34,4 @@ fetch("content.json")
   });
 </script>
 </body>
-  <!-- POPUP SHOPEE -->
-<div id="shopee-overlay">
-  <div class="popup">
-    <span class="close">✕</span>
-    <img src="https://fagoagency.vn/uploads/pictures/60c6c4a18837135b3b974d07/content_shopee-flash-sale-thu-4.jpg" alt="Shopee banner">
-  </div>
-</div>
 </html>
