@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tin hot hôm nay</title>
+<script src="script.js"></script>
+<style>
+body { max-width:800px; margin:40px auto; font-family:Arial; line-height:1.6 }
+img, iframe { max-width:100%; }
+</style>
+</head>
+
+<body>
+<h1 id="title"></h1>
+<img id="image">
+<p id="content"></p>
+<iframe id="video" width="100%" height="400" allowfullscreen></iframe>
+
+<script>
+fetch("content.json")
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById("title").innerText = data.title;
+    document.getElementById("content").innerText = data.content;
+    document.getElementById("image").src = data.image;
+    document.getElementById("video").src = data.video;
+  });
+</script>
+</body>
+</html>
