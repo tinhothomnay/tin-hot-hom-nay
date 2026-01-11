@@ -35,23 +35,33 @@ fetch("content.json")
     document.getElementById("title").innerText = data.title;
     document.getElementById("content").innerText = data.content;
     document.getElementById("image").src = data.image;
- const videoWrapper = document.getElementById("video-wrapper");
+const videoWrapper = document.getElementById("video-wrapper");
 videoWrapper.innerHTML = "";
 
-// Nếu là YouTube
+// nếu không có video thì bỏ qua
+if (!data.video) return;
+
+// nếu là YouTube
 if (data.video.includes("youtube.com") || data.video.includes("youtu.be")) {
+  let videoId = "";
+
+  if (data.video.includes("embed/")) {
+    videoId = data.video.split("embed/")[1].split("?")[0];
+  } else if (data.video.includes("v=")) {
+    videoId = data.video.split("v=")[1].split("&")[0];
+  } else if (data.video.includes("youtu.be/")) {
+    videoId = data.video.split("youtu.be/")[1].split("?")[0];
+  }
+
   const iframe = document.createElement("iframe");
   iframe.width = "100%";
   iframe.height = "400";
+  iframe.src = "https://www.youtube.com/embed/" + videoId;
   iframe.allowFullscreen = true;
-  iframe.src = data.video.includes("embed")
-    ? data.video
-    : "https://www.youtube.com/embed/" +
-      data.video.split("v=")[1]?.split("&")[0];
 
   videoWrapper.appendChild(iframe);
 }
-// Nếu là mp4 (link ngoài hoặc file upload)
+// nếu là mp4 (file upload hoặc link ngoài)
 else {
   const video = document.createElement("video");
   video.width = "100%";
@@ -62,6 +72,7 @@ else {
   video.src = data.video;
 
   videoWrapper.appendChild(video);
+}
 }
   });
 </script>
