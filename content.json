@@ -1,6 +1,6 @@
 {
-  "title": "Bài học mẫu",
-  "content": "Đây là nội dung bài học. Bạn có thể chỉnh sửa thoải mái.",
-  "image": "https://picsum.photos/800/400",
-  "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  "title": "Tin Hót Hôm Nay",
+  "content": "Nội dung bài học",
+  "image": "media/image.jpg",
+  "video": "media/video.mp4"
 }
