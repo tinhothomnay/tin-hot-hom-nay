@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const SHOPEE_LINK = "https://shopee.vn/your-affiliate-link";
+  const SHOPEE_LINK = "https://s.shopee.vn/70DnkaNSjf";
 
   // Chỉ yêu cầu click 1 lần mỗi phiên
   if (sessionStorage.getItem("opened_shopee")) return;
