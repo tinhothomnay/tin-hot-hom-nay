@@ -26,3 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("mousedown", handleFirstAction, true);
   document.addEventListener("touchstart", handleFirstAction, true);
 });
+// ===== ĐẾM LƯỢT XEM (MIỄN PHÍ) =====
+fetch("https://api.countapi.xyz/hit/tinhothomnay/tin-hot-hom-nay")
+  .then(res => res.json())
+  .then(data => {
+    const viewEl = document.getElementById("view-count");
+    if (viewEl) {
+      viewEl.innerText = data.value.toLocaleString("vi-VN");
+    }
+  })
+  .catch(() => {});
+
