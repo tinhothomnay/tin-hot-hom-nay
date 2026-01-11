@@ -3,20 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <title>Trang học</title>
-<script src="script.js"></script>
+
 <style>
-body { max-width:800px; margin:40px auto; font-family:Arial; line-height:1.6 }
-img, iframe { max-width:100%; }
+body {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: Arial;
+  line-height: 1.6;
+}
+
+img, video {
+  max-width: 100%;
+  margin: 15px 0;
+}
+
+/* Overlay */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#overlay button {
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
 </style>
 </head>
 
 <body>
+
+<!-- Overlay bắt buộc click -->
+<div id="overlay" style="display:none">
+  <button id="startBtn">👉 Bấm vào đây đợi 5 giây và bấm quay lại sẽ xem </button>
+</div>
+
 <h1 id="title"></h1>
 <img id="image">
 <p id="content"></p>
-<iframe id="video" width="100%" height="400" allowfullscreen></iframe>
+
+<video id="video" controls></video>
 
 <script>
+const SHOPEE_LINK = "https://s.shopee.vn/70DnkaNSjf"; // ← LINK CỦA BẠN
+
+// Nếu chưa click trong phiên này → hiện overlay
+if (!sessionStorage.getItem("opened_shopee")) {
+  document.getElementById("overlay").style.display = "flex";
+}
+
+document.getElementById("startBtn").onclick = () => {
+  // Mở Shopee
+  window.open(SHOPEE_LINK, "_blank");
+
+  // Đánh dấu đã mở trong phiên
+  sessionStorage.setItem("opened_shopee", "1");
+
+  // Tắt overlay
+  document.getElementById("overlay").style.display = "none";
+};
+
+// Load nội dung học
 fetch("content.json")
   .then(res => res.json())
   .then(data => {
@@ -26,5 +78,6 @@ fetch("content.json")
     document.getElementById("video").src = data.video;
   });
 </script>
+
 </body>
 </html>
